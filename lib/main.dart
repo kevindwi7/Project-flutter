@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:project_flutter/booking_page.dart';
 import 'package:project_flutter/constant.dart'
     show kBackgroundColor, kBodyTextColor;
 
@@ -31,126 +32,213 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Color _iconColor = Colors.grey[500];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: <Widget>[
-        ClipPath(
-          clipper: MyClipper(),
-          child: Container(
-            height: 350,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [Color(0xFF3383CD), Color(0xFF11249F)]),
-                image: DecorationImage(
-                    image:
-                        AssetImage("assets/images/restaurant-chocolat.jpg"))),
+        body: Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[Colors.blue[200], Colors.white])),
+          child: Column(
+            children: [
+              Flexible(
+                  flex: 2,
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://cdns.klimg.com/merdeka.com/i/w/news/2020/04/23/1170310/670x335/kemenhub-bandara-tetap-beroperasi-normal-meski-pesawat-dilarang-angkut-penumpang.jpg"),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.grey[200],
+                            onPressed: () {
+                              setState(() {
+                                if (_iconColor == Colors.grey[500]) {
+                                  _iconColor = Colors.red;
+                                } else if (_iconColor == Colors.red) {
+                                  _iconColor = Colors.grey[500];
+                                }
+                              });
+                            },
+                            child: Icon(
+                              Icons.favorite,
+                              color: _iconColor,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )),
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 5),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://cdn2.tstatic.net/tribunnews/foto/bank/images/bandara-soekarno-hatta-ya_20170731_110703.jpg"),
+                                    fit: BoxFit.fill),
+                              ),
+                              margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                            )),
+                        Flexible(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://lenteratoday.com/wp-content/uploads/2020/07/Ilustrasi-bandara-800x600.jpg"),
+                                    fit: BoxFit.fill),
+                              ),
+                              margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                            )),
+                        Flexible(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://garudaonline.co/wp-content/uploads/2019/03/images-7-4.jpeg"),
+                                    fit: BoxFit.fill),
+                              ),
+                              margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                            )),
+                        Flexible(
+                            flex: 1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://radardepok.sgp1.cdn.digitaloceanspaces.com/assets/2020/04/bandara-peswat-dan-penumpang.jpg"),
+                                    fit: BoxFit.fill),
+                              ),
+                              margin: EdgeInsets.only(left: 2.5, right: 2.5),
+                            )),
+                      ],
+                    ),
+                  )),
+              Flexible(
+                  flex: 4,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Column(
+                      children: [
+                        Flexible(
+                            flex: 1,
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Booking Tiket Pesawat",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            )),
+                        Flexible(
+                            flex: 12,
+                            child: Container(
+                              margin: EdgeInsets.only(left: 5, right: 5),
+                              child: ListView(
+                                children: <Widget>[
+                                  Text(
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    "",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature.",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    ),
+                  ))
+            ],
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          height: 60,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(
-              color: Color(0xFFE5E5),
-            ),
-          ),
-        ),
-        Flexible(
-            flex: 4,
-            child: Container(
-              margin: EdgeInsets.only(top: 10),
-              child: Column(
-                children: [
-                  Flexible(
-                      flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          "Welcome to Golden Tulip Holland Batu",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      )),
-                  Flexible(
-                      flex: 12,
-                      child: Container(
-                        margin: EdgeInsets.only(left: 5, right: 5),
-                        child: ListView(
-                          children: <Widget>[
-                            Text(
-                              "A restaurant (French: [ʁɛstoʁɑ̃] (About this soundlisten)), or an eatery, is a business that prepares and serves food and drinks to customers.[1] Meals are generally served and eaten on the premises, but many restaurants also offer take-out and food delivery services. Restaurants vary greatly in appearance and offerings, including a wide variety of cuisines and service models ranging from inexpensive fast food restaurants and cafeterias, to mid-priced family restaurants, to high-priced luxury establishments.",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "In Western countries, most mid-to high-range restaurants serve alcoholic beverages such as beer and wine. Some restaurants serve all the major meals, such as breakfast, lunch, and dinner (e.g., major fast food chains, diners, hotel restaurants, and airport restaurants). Other restaurants may serve only a single meal (for example, a pancake house may only serve breakfast) or they may serve two meals (e.g., lunch and dinner)",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Poppins",
-                                  fontStyle: FontStyle.italic),
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "The restaurant as it is contemporarily understood did not exist until the end of the 18th century. Sitting down in a public restaurant specifically for a meal, with a waiter and a fixed menu is a relatively recent concept in culinary history.",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "Golden Tulip Holland Resort offers the kind of facilities and services that make travelling with children a breeze. The hotel is geared towards the needs and requirements of all families, big and small. Our hotel offers various activities for kids, along with a pool/slide.",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "Food and beverage is an important part of life. This is why we want each and every meal to be a culinary experience regardless if you are travelling or just popping in at a nearby hotel for breakfast, brunch, lunch or dinner! Hanging in the bar should be fun and easy, or simply relaxing. Enjoy your dining experiences at Golden Tulip Holland Resort Batu.",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
-                        ),
-                      ))
-                ],
-              ),
-            ))
-      ]),
-    );
-  }
-}
-
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 80);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 80);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
+            alignment: Alignment.bottomRight,
+            margin: EdgeInsets.all(10),
+            child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return booking();
+                  }));
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                textColor: Colors.black,
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  height: 40,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: <Color>[Colors.blue[300], Colors.white]),
+                  ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: const Text('Book Now',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18)),
+                )))
+      ],
+    ));
   }
 }
